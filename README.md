@@ -46,8 +46,8 @@ $ ./gradlew PerformanceTest -Pspock.configuration=spock/PerformanceConfig.groovy
 * ```include```
     * Annotations and Base classes to run
 
-*```exclude```
-    * Annotations and Base classes to run
+* ```exclude```
+   * Annotations and Base classes to run
 
 ## Authors
 
