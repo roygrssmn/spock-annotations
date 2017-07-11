@@ -1,0 +1,47 @@
+apply plugin: 'idea'
+apply plugin: 'groovy'
+
+
+
+ext {
+    spockConfigFileFolder ="spock"
+}
+
+repositories {
+    jcenter()
+}
+
+// Get spock configurations
+def spockConfigurations = project.hasProperty("spock.configuration")  ? project.properties["spock.configuration"]  : null
+
+dependencies {
+    compile group: 'org.spockframework', name: 'spock-core', version: '1.0-groovy-2.4'
+    compile group: 'commons-io', name: 'commons-io', version: '2.4'
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.3'
+}
+
+task RegressionTest(type: Test){
+//    include '**/DemoSpec*'
+    systemProperty "spock.configuration", "$spockConfigFileFolder/RegressionConfig.groovy"
+}
+
+task SanityTest(type: Test){
+    systemProperty "spock.configuration", "$spockConfigFileFolder/SanityConfig.groovy"
+}
+
+task PerformanceTest(type: Test){
+    systemProperty "spock.configuration", "$spockConfigFileFolder/PerformanceConfig.groovy"
+}
+
+task AllTest(type: Test){
+}
+
+tasks.withType(Test) {
+    testLogging {
+        exceptionFormat "full" // Fail shows the whole exception
+        events 'started', 'passed', 'skipped', 'failed'
+    }
+    if (spockConfigurations){
+        systemProperty "spock.configuration", spockConfigurations
+    }
+}
