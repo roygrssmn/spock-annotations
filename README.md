@@ -1,6 +1,6 @@
 # Spock configuration testing
 
-Small example of using spock configuration to run specific methods and specific classes
+####Example of using spock configuration file in order to run specific tests or specific classes using Spock Test Framework
 
 ### Installing
 
