@@ -1,15 +1,6 @@
 # Spock configuration testing
 
-The following is the assignment for the API and GUI for Home24
-
-## Getting Started
-
-See README.md in each project folder (api|gui) for _how to get started_ with the tests.
-
-### Prerequisites
-
-Software you need to install includes: Java, Gradle and Groovy
-You cal install all three using [sdkman](http://sdkman.io/install.html)
+Small example of using spock configuration to run specific methods and specific classes
 
 ### Installing
 
@@ -19,16 +10,48 @@ Clone project or untar to a folder
 $ git clone https://....
 ```
 
+## Running examples
 
-## Running the tests
+Running the regression test
+```
+$ ./gradlew RegressionTest
+```
+Running the sanity test
+```
+$ ./gradlew SanityTest
+```
 
-See README.md in each project folder (api|gui) for _how to get started_ with the tests.
+Running the performance test
+```
+$ ./gradlew PerformanceTest
+```
+
+Running the performance test with specific spock config file
+```
+$ ./gradlew PerformanceTest -Pspock.configuration=spock/PerformanceConfig.groovy
+```
+
+
+## Spock configuration parameters
+* ```filterStackTrace```
+    * Filters spockFrameWork exceptions
+    * Configure Spock whether it should filter stack traces or not
+    * Default True
+
+* ```optimizeRunOrder```
+    * re-run failing methods before successful methods
+    * run the fastest methods, followed by the slower methods
+    * Default False
+
+* ```include```
+    * Annotations and Base classes to run
+
+*```exclude```
+    * Annotations and Base classes to run
 
 ## Authors
 
 * **Roy Grossman** - *Initial work* - [roy424](https://github.com/roy424)
-
-See also the list of [contributors](https://github.com/roy424/home24/contributors) who participated in this project.
 
 ## License
 
